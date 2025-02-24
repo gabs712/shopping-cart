@@ -22,19 +22,20 @@ export default function Header({ itemsInCart = 0 }) {
           <nav>
             <ul className="flex gap-3">
               {pages.map((page) => (
-                <NavLink
-                  className={({ isActive }) =>
-                    `hover:text-white text-slate-200 ${
-                      isActive
-                        ? 'underline decoration-2 underline-offset-4 decoration-brandHighlight'
-                        : ''
-                    }`
-                  }
-                  key={page.name}
-                  to={page.link}
-                >
-                  {page.name}
-                </NavLink>
+                <li key={page.name}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      `hover:text-white text-slate-200 ${
+                        isActive
+                          ? 'underline decoration-2 underline-offset-4 decoration-brandHighlight'
+                          : ''
+                      }`
+                    }
+                    to={page.link}
+                  >
+                    {page.name}
+                  </NavLink>
+                </li>
               ))}
             </ul>
           </nav>
@@ -42,15 +43,15 @@ export default function Header({ itemsInCart = 0 }) {
             <div className="relative transition-transform ease-in-out hover:scale-125">
               <ShoppingBasket
                 aria-label="Shopping cart"
-                className="stroke-slate-100 size-6"
+                className="size-6 stroke-slate-100"
               />
-              <div className="absolute bottom-0 right-0 translate-y-1.5 will-change-transform translate-x-1">
+              <div className="absolute bottom-0 right-0 translate-x-1 translate-y-1.5 will-change-transform">
                 <p className="sr-only" id="cart-label">
                   Number of items in cart:
                 </p>
                 <div className="grid size-3.5 place-content-center rounded-full bg-brandHighlight/80">
                   <p
-                    className="text-[.7rem] whitespace-nowrap font-bold text-white"
+                    className="whitespace-nowrap text-[.7rem] font-bold text-white"
                     aria-live="polite"
                     aria-labelledby="cart-label"
                   >
