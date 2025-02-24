@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { ShoppingBasket } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import useFirstLoad from '../../hooks/useFirstLoad'
+import getNavStyles from './utils/getNavStyles'
 
 export default function Header({ itemsInCart = 0 }) {
   const { isFirstLoad, disableFirstLoad } = useFirstLoad()
@@ -28,11 +29,7 @@ export default function Header({ itemsInCart = 0 }) {
                 <li key={page.name}>
                   <NavLink
                     className={({ isActive }) =>
-                      `hover:text-white text-slate-200 relative ${
-                        isActive && !isFirstLoad
-                          ? 'after:content-[""] after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:animate-[increasingSize_400ms] after:bg-brandHighlight'
-                          : ''
-                      }`
+                      getNavStyles(isActive, isFirstLoad)
                     }
                     to={page.link}
                     onClick={disableFirstLoad}
