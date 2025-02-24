@@ -38,7 +38,26 @@ export default function Header() {
             </ul>
           </nav>
           <button className="mr-2 flex items-center bg-slate-700">
-            <ShoppingBasket className="stroke-slate-100" />
+            <div className="relative transition-transform ease-in-out hover:scale-125">
+              <ShoppingBasket
+                aria-label="Shopping cart"
+                className="stroke-slate-100 size-6"
+              />
+              <div className="absolute bottom-0 right-0 translate-y-1.5 will-change-transform translate-x-1">
+                <p className="sr-only" id="cart-label">
+                  Number of items in cart:
+                </p>
+                <div className="grid size-3.5 place-content-center rounded-full bg-brandHighlight/80">
+                  <p
+                    className="text-[.7rem] whitespace-nowrap font-bold text-white"
+                    aria-live="polite"
+                    aria-labelledby="cart-label"
+                  >
+                    {/* TODO: Add dynamic items quantity in card icon */}0
+                  </p>
+                </div>
+              </div>
+            </div>
           </button>
         </div>
       </div>
