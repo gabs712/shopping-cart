@@ -15,7 +15,7 @@ export default function Header({ itemsInCart = 0 }) {
   ]
 
   return (
-    <header className="flex min-h-11 items-center bg-slate-700 px-3.5 py-3">
+    <header className="sticky top-0 will-change-contents flex min-h-11 items-center bg-slate-700 px-3.5 py-3">
       <div className="flex w-full items-center justify-between gap-2">
         <p className="bold text-lg font-bold text-brandHighlight">ShopingApp</p>
         <div className="flex gap-6">
