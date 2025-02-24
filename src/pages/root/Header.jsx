@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { ShoppingBasket } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
@@ -63,4 +64,8 @@ export default function Header({ itemsInCart = 0 }) {
       </div>
     </header>
   )
+}
+
+Header.propTypes = {
+  itemsInCart: PropTypes.number,
 }
