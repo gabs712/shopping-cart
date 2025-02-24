@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types'
 import { ShoppingBasket } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
+import useFirstLoad from '../../hooks/useFirstLoad'
 
 export default function Header({ itemsInCart = 0 }) {
+  const { isFirstLoad, disableFirstLoad } = useFirstLoad()
+
   const pages = [
     {
       name: 'Home',
@@ -15,7 +18,7 @@ export default function Header({ itemsInCart = 0 }) {
   ]
 
   return (
-    <header className="sticky top-0 will-change-contents flex min-h-11 items-center bg-slate-700 px-3.5 py-3">
+    <header className="sticky top-0 flex min-h-11 items-center bg-slate-700 px-3.5 py-3 will-change-contents">
       <div className="flex w-full items-center justify-between gap-2">
         <p className="bold text-lg font-bold text-brandHighlight">ShopingApp</p>
         <div className="flex gap-6">
@@ -25,13 +28,14 @@ export default function Header({ itemsInCart = 0 }) {
                 <li key={page.name}>
                   <NavLink
                     className={({ isActive }) =>
-                      `hover:text-white text-slate-200 ${
-                        isActive
-                          ? 'underline decoration-2 underline-offset-4 decoration-brandHighlight'
+                      `hover:text-white text-slate-200 relative ${
+                        isActive && !isFirstLoad
+                          ? 'after:content-[""] after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:animate-[increasingSize_400ms] after:bg-brandHighlight'
                           : ''
                       }`
                     }
                     to={page.link}
+                    onClick={disableFirstLoad}
                   >
                     {page.name}
                   </NavLink>
