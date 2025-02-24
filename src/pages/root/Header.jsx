@@ -44,7 +44,7 @@ export default function Header({ itemsInCart = 0 }) {
             </ul>
           </nav>
           <button className="flex items-center bg-slate-700">
-            <div className="relative transition-transform ease-in-out hover:scale-125">
+            <div className="relative transition-transform duration-300 ease-in-out hover:scale-125">
               <ShoppingBasket
                 aria-label="Shopping cart"
                 className="size-6 stroke-slate-100"
