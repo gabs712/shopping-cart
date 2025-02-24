@@ -2,7 +2,11 @@ const config = {
   darkMode: 'selector',
   content: ['./src/**/*.jsx'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brandHighlight: '#60A5FA',
+      },
+    },
   },
 }
 
