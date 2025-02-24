@@ -1,7 +1,7 @@
 import { ShoppingBasket } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
-export default function Header() {
+export default function Header({ itemsInCart = 0 }) {
   const pages = [
     {
       name: 'Home',
@@ -53,7 +53,7 @@ export default function Header() {
                     aria-live="polite"
                     aria-labelledby="cart-label"
                   >
-                    {/* TODO: Add dynamic items quantity in card icon */}0
+                    {itemsInCart > 99 ? 99 : itemsInCart}
                   </p>
                 </div>
               </div>
