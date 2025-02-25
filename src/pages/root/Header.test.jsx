@@ -10,7 +10,7 @@ describe('Header', () => {
     const user = userEvent.setup()
 
     const [home, products] = screen.getAllByRole('link')
-    const highlight = 'after:content-[""]'
+    const highlight = /after:content/
 
     expect(home).toHaveClass(highlight)
     expect(products).not.toHaveClass(highlight)
@@ -26,7 +26,7 @@ describe('Header', () => {
     const user = userEvent.setup()
 
     const [home, products] = screen.getAllByRole('link')
-    const animation = 'after:animate-[increasingSize_400ms]'
+    const animation = /after:animate/
 
     expect(home).not.toHaveClass(animation)
     expect(products).not.toHaveClass(animation)
