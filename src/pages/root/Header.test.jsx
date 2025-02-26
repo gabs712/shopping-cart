@@ -1,14 +1,17 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { screen, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import Header from './Header'
 
 describe('Header', () => {
-  it('Highlights current navlink', async () => {
+  let user
+  beforeEach(() => {
     render(<Header />, { wrapper: MemoryRouter })
-    const user = userEvent.setup()
+    user = userEvent.setup()
+  })
 
+  it('Highlights current navlink', async () => {
     const [home, products] = screen.getAllByRole('link')
     const highlight = /after:content/
 
@@ -22,9 +25,6 @@ describe('Header', () => {
   })
 
   it('Animates current highlight after clicking link', async () => {
-    render(<Header />, { wrapper: MemoryRouter })
-    const user = userEvent.setup()
-
     const [home, products] = screen.getAllByRole('link')
     const animation = /after:animate/
 
