@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { screen, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { BrowserRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 import Header from './Header'
 
 describe('Header', () => {
   it('Highlights current navlink', async () => {
-    render(<Header />, { wrapper: BrowserRouter })
+    render(<Header />, { wrapper: MemoryRouter })
     const user = userEvent.setup()
 
     const [home, products] = screen.getAllByRole('link')
@@ -22,7 +22,7 @@ describe('Header', () => {
   })
 
   it('Animates current highlight after clicking link', async () => {
-    render(<Header />, { wrapper: BrowserRouter })
+    render(<Header />, { wrapper: MemoryRouter })
     const user = userEvent.setup()
 
     const [home, products] = screen.getAllByRole('link')
