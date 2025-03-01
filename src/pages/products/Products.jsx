@@ -25,7 +25,7 @@ export default function Products() {
   console.log(data)
 
   return (
-    <main>
+    <main className="grid max-w-screen-lg mx-auto py-10 px-7 gap-y-5 gap-x-20 grid-cols-[repeat(auto-fill,minmax(8.3rem,1fr))]">
       {data.map((item) => (
         <Card
           key={item.id}
