@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 export default function useFetchData(url) {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
+  const loading = data === null
 
   useEffect(() => {
     let ignore = false
@@ -25,5 +26,5 @@ export default function useFetchData(url) {
     }
   }, [url])
 
-  return { data, error }
+  return { data, error, loading }
 }
