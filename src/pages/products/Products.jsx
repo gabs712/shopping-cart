@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import useFetchData from '../../hooks/useFetchData'
 import Card from './Card'
+import { useOutletContext } from 'react-router-dom'
 
 function CenteredMsg({ text }) {
   return (
@@ -12,7 +12,7 @@ function CenteredMsg({ text }) {
 
 export default function Products() {
   const { data, error, loading, increaseQuantity, decreaseQuantity } =
-    useFetchData('https://fakestoreapi.com/products')
+    useOutletContext()
 
   if (error) {
     return <CenteredMsg text={error.msg} />
@@ -23,7 +23,7 @@ export default function Products() {
   }
 
   return (
-    <main className="grid max-w-screen-lg mx-auto py-10 px-7 gap-y-5 gap-x-20 grid-cols-[repeat(auto-fill,minmax(8.3rem,1fr))]">
+    <main className="mx-auto grid max-w-screen-lg grid-cols-[repeat(auto-fill,minmax(8.3rem,1fr))] gap-x-20 gap-y-5 px-7 py-10">
       {data.map((item) => (
         <Card
           key={item.id}
