@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { data, Outlet } from 'react-router-dom'
 import Header from './Header'
 import Container from './Container'
 import useFetchData from '../../hooks/useFetchData'
@@ -9,7 +9,7 @@ export default function Root() {
   return (
     <>
       {/* TODO: Add show item in card quantity */}
-      <Header dataInfo={dataInfo} />
+      <Header data={dataInfo.data} />
       <Container>
         <Outlet context={dataInfo} />
       </Container>

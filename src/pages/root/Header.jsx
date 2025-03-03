@@ -4,7 +4,7 @@ import useFirstLoad from '../../hooks/useFirstLoad'
 import getNavStyles from './utils/getNavStyles'
 import Cart from './Cart'
 
-export default function Header({ dataInfo }) {
+export default function Header({ data }) {
   const { isFirstLoad, disableFirstLoad } = useFirstLoad()
 
   const pages = [
@@ -40,7 +40,7 @@ export default function Header({ dataInfo }) {
               ))}
             </ul>
           </nav>
-          <Cart dataInfo={dataInfo} />
+          <Cart data={data} />
         </div>
       </div>
     </header>
@@ -48,5 +48,5 @@ export default function Header({ dataInfo }) {
 }
 
 Header.propTypes = {
-  dataInfo: PropTypes.object.isRequired,
+  data: PropTypes.array,
 }

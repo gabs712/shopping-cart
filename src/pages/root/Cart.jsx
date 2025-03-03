@@ -3,11 +3,16 @@ import PropTypes from 'prop-types'
 import useTogglePopup from '../../hooks/useTogglePopup'
 import getTotalQuantity from './utils/getTotalQuantity'
 
-export default function Cart({ dataInfo }) {
+export default function Cart({ data }) {
   const { isOpen, cartRef, toggleOpen } = useTogglePopup()
 
   return (
-    <div ref={cartRef} className="relative">
+    <div
+      ref={cartRef}
+      aria-expanded={isOpen}
+      aria-controls="popup"
+      className="relative"
+    >
       <button onClick={toggleOpen} className="flex items-center bg-slate-700">
         <div className="relative transition-transform duration-300 ease-in-out hover:scale-125">
           <ShoppingBasket
@@ -24,29 +29,40 @@ export default function Cart({ dataInfo }) {
                 aria-live="polite"
                 aria-labelledby="cart-label"
               >
-                {dataInfo.data ? getTotalQuantity(dataInfo.data) : 0}
+                {data ? getTotalQuantity(data) : 0}
               </p>
             </div>
           </div>
         </div>
       </button>
-      {isOpen && <CartPopup dataInfo={dataInfo} />}
+      <CartPopup isOpen={isOpen} data={data} />
     </div>
   )
 }
 
-function CartPopup({ dataInfo }) {
+function CartPopup({ isOpen, data }) {
   return (
-    <div className="absolute top-7 left-0" aria-live="polite">
-      <div>test</div>
+    <div
+      id="popup"
+      className={`${isOpen ? '' : 'hidden'} absolute left-7 top-9 w-72 -translate-x-full rounded-sm bg-slate-100/90 px-2 py-2 shadow`}
+    >
+      <div className="h-96 overflow-y-auto">
+        <div></div>
+      </div>
+      <div className="mt-3 flex justify-end">
+        <button className="text-md rounded-md bg-brandHighlight px-3 py-1 font-bold text-white transition-opacity hover:opacity-95 active:opacity-80">
+          Purchase
+        </button>
+      </div>
     </div>
   )
 }
 
 Cart.propTypes = {
-  dataInfo: PropTypes.object.isRequired,
+  data: PropTypes.array,
 }
 
 CartPopup.propTypes = {
-  dataInfo: PropTypes.object.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  data: PropTypes.array,
 }
