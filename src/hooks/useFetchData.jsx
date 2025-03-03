@@ -64,9 +64,7 @@ export default function useFetchData(url) {
   }
 
   function clearAllQuantities() {
-    for (const [i, item] of data.entries()) {
-      if (item.quantity <= 0) return
-
+    for (const [i, _] of data.entries()) {
       updateData((draft) => {
         draft[i].quantity = 0
       })

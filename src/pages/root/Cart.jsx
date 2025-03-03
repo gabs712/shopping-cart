@@ -106,7 +106,6 @@ function CartPopup({ isOpen, dataInfo }) {
           Total: ${dataInfo.data ? getTotalPrice(dataInfo.data) : 0.0}
         </p>
         <button
-          // BUG: Doesn't work when clicking multiple times
           onClick={(e) => {
             e.stopPropagation()
             if (dataInfo.data) {
