@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export default function CountButton({ char, onClick, className }) {
   return (
     <button
@@ -12,4 +14,10 @@ export default function CountButton({ char, onClick, className }) {
       <span className={className}>{char}</span>
     </button>
   )
+}
+
+CountButton.propTypes = {
+  char: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
 }
