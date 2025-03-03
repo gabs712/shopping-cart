@@ -1,6 +1,7 @@
 import { ShoppingBasket } from 'lucide-react'
 import PropTypes from 'prop-types'
 import useTogglePopup from '../../hooks/useTogglePopup'
+import getTotalQuantity from './utils/getTotalQuantity'
 
 export default function Cart({ dataInfo }) {
   const { isOpen, cartRef, toggleOpen } = useTogglePopup()
@@ -19,11 +20,11 @@ export default function Cart({ dataInfo }) {
             </p>
             <div className="grid size-3.5 place-content-center rounded-full bg-brandHighlight/80">
               <p
-                className="whitespace-nowrap text-.7rem font-bold text-white"
+                className="whitespace-nowrap text-[.7rem] font-bold text-white"
                 aria-live="polite"
                 aria-labelledby="cart-label"
               >
-                {/* {itemsInCart > 99 ? 99 : itemsInCart} */}
+                {dataInfo.data ? getTotalQuantity(dataInfo.data) : 0}
               </p>
             </div>
           </div>
