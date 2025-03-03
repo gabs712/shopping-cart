@@ -19,6 +19,7 @@ export default function Card({ item, increaseQuantity, decreaseQuantity }) {
         <div className="flex justify-between mt-3">
           <form className="flex border rounded-md justify-between px-2 w-[4.3rem]">
             <button
+              aria-controls="cardCount"
               onClick={() => {
                 decreaseQuantity(item.id)
               }}
@@ -27,8 +28,11 @@ export default function Card({ item, increaseQuantity, decreaseQuantity }) {
             >
               -
             </button>
-            <p aria-live="polite">{item.quantity}</p>
+            <p id="cardCount" aria-live="polite">
+              {item.quantity}
+            </p>
             <button
+              aria-controls="cardCount"
               onClick={() => {
                 increaseQuantity(item.id)
               }}
