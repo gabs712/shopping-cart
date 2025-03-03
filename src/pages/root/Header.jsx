@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import { ShoppingBasket } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import useFirstLoad from '../../hooks/useFirstLoad'
 import getNavStyles from './utils/getNavStyles'
+import Cart from './Cart'
 
-export default function Header({ itemsInCart = 0 }) {
+export default function Header({ dataInfo }) {
   const { isFirstLoad, disableFirstLoad } = useFirstLoad()
 
   const pages = [
@@ -40,28 +40,7 @@ export default function Header({ itemsInCart = 0 }) {
               ))}
             </ul>
           </nav>
-          <button className="flex items-center bg-slate-700">
-            <div className="relative transition-transform duration-300 ease-in-out hover:scale-125">
-              <ShoppingBasket
-                aria-label="Shopping cart"
-                className="size-6 stroke-slate-100"
-              />
-              <div className="absolute bottom-0 right-0 translate-x-1 translate-y-1.5 will-change-transform">
-                <p className="sr-only" id="cart-label">
-                  Number of items in cart:
-                </p>
-                <div className="grid size-3.5 place-content-center rounded-full bg-brandHighlight/80">
-                  <p
-                    className="whitespace-nowrap text-[.7rem] font-bold text-white"
-                    aria-live="polite"
-                    aria-labelledby="cart-label"
-                  >
-                    {itemsInCart > 99 ? 99 : itemsInCart}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </button>
+          <Cart dataInfo={dataInfo} />
         </div>
       </div>
     </header>
@@ -69,5 +48,5 @@ export default function Header({ itemsInCart = 0 }) {
 }
 
 Header.propTypes = {
-  itemsInCart: PropTypes.number,
+  dataInfo: PropTypes.object.isRequired,
 }
