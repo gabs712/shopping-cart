@@ -4,7 +4,11 @@ export default function Card({ item, increaseQuantity, decreaseQuantity }) {
   return (
     <div>
       <div className="grid h-52 place-content-center overflow-hidden">
-        <img src={item.image} className="h-44" alt="" />
+        <img
+          src={item.image}
+          className="h-44 object-contain object-center"
+          alt=""
+        />
       </div>
       <div>
         <div className="min-h-[2lh] flex items-center text-sm">
