@@ -2,6 +2,9 @@ import { ShoppingBasket } from 'lucide-react'
 import PropTypes from 'prop-types'
 import useTogglePopup from '../../hooks/useTogglePopup'
 import getTotalQuantity from './utils/getTotalQuantity'
+import getAddedItems from './utils/getAddedItems'
+import CountButton from './CountButton'
+import getTotalPrice from './utils/getTotalPrice'
 
 export default function Cart({ dataInfo }) {
   const { isOpen, cartRef, toggleOpen } = useTogglePopup()
@@ -46,13 +49,72 @@ function CartPopup({ isOpen, dataInfo }) {
   return (
     <div
       id="popup"
-      className={`${isOpen ? '' : 'hidden'} absolute left-7 top-9 w-72 -translate-x-full rounded-sm bg-slate-100/90 px-2 py-2 shadow`}
+      className={`${isOpen ? '' : 'hidden'} absolute left-7 top-9 w-72 -translate-x-full rounded-sm bg-slate-100/95 shadow`}
     >
-      <div className="h-96 overflow-y-auto">
-        <div></div>
+      <div className="h-96 overflow-y-auto px-2 pt-3">
+        <div className="flex flex-col gap-2.5">
+          {data &&
+            getAddedItems(data).map((item) => (
+              <div className="flex gap-4 rounded bg-white p-3" key={item.id}>
+                <div className="flex-shrink-0 ">
+                  <img
+                    className="h-12 w-8 overflow-hidden object-contain object-center"
+                    src={item.image}
+                    alt=""
+                  />
+                </div>
+                <div className="flex w-full flex-col justify-between overflow-hidden">
+                  <div
+                    className="overflow-hidden overflow-ellipsis whitespace-nowrap text-xs font-semibold text-slate-700"
+                    title={item.title}
+                  >
+                    {item.title}
+                  </div>
+                  <div>
+                    <div className="flex justify-between">
+                      <div className="text-sm text-gray-800">
+                        {'$' + item.price}
+                      </div>
+                      <form className="flex items-center gap-2 ">
+                        <CountButton
+                          className={'mb-0.5'}
+                          char={'-'}
+                          onClick={() => dataInfo.decreaseQuantity(item.id)}
+                        />
+                        <p
+                          className="mt-0.5 text-xs"
+                          id="cartCounter"
+                          aria-live="polite"
+                        >
+                          {item.quantity}
+                        </p>
+                        <CountButton
+                          className={'text-xs'}
+                          char={'+'}
+                          onClick={() => dataInfo.increaseQuantity(item.id)}
+                        />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
-      <div className="mt-3 flex justify-end">
-        <button className="text-md rounded-md bg-brandHighlight px-3 py-1 font-bold text-white transition-opacity hover:opacity-95 active:opacity-80">
+      <div className="mt-4 flex items-center justify-between px-2 pb-2">
+        <p className="overflow-hidden overflow-ellipsis whitespace-nowrap text-slate-900">
+          Total: ${dataInfo.data ? getTotalPrice(dataInfo.data) : 0.0}
+        </p>
+        <button
+          // BUG: Doesn't work when clicking multiple times
+          onClick={(e) => {
+            e.stopPropagation()
+            if (dataInfo.data) {
+              dataInfo.clearAllQuantities()
+            }
+          }}
+          className="text-md rounded-md bg-brandHighlight px-3 py-1 font-bold text-white transition-opacity hover:opacity-95 active:opacity-80"
+        >
           Purchase
         </button>
       </div>
