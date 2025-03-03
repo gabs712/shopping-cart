@@ -9,7 +9,7 @@ export default function Root() {
   return (
     <>
       {/* TODO: Add show item in card quantity */}
-      <Header data={dataInfo.data} />
+      <Header dataInfo={dataInfo} />
       <Container>
         <Outlet context={dataInfo} />
       </Container>

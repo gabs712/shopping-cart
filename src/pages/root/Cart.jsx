@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import useTogglePopup from '../../hooks/useTogglePopup'
 import getTotalQuantity from './utils/getTotalQuantity'
 
-export default function Cart({ data }) {
+export default function Cart({ dataInfo }) {
   const { isOpen, cartRef, toggleOpen } = useTogglePopup()
 
   return (
@@ -29,18 +29,20 @@ export default function Cart({ data }) {
                 aria-live="polite"
                 aria-labelledby="cart-label"
               >
-                {data ? getTotalQuantity(data) : 0}
+                {dataInfo.data ? getTotalQuantity(dataInfo.data) : 0}
               </p>
             </div>
           </div>
         </div>
       </button>
-      <CartPopup isOpen={isOpen} data={data} />
+      <CartPopup isOpen={isOpen} dataInfo={dataInfo} />
     </div>
   )
 }
 
-function CartPopup({ isOpen, data }) {
+function CartPopup({ isOpen, dataInfo }) {
+  const data = dataInfo.data
+
   return (
     <div
       id="popup"
@@ -59,10 +61,10 @@ function CartPopup({ isOpen, data }) {
 }
 
 Cart.propTypes = {
-  data: PropTypes.array,
+  dataInfo: PropTypes.object.isRequired,
 }
 
 CartPopup.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  data: PropTypes.array,
+  dataInfo: PropTypes.object.isRequired,
 }
