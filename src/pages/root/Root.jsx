@@ -1,4 +1,4 @@
-import { data, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Container from './Container'
 import useFetchData from '../../hooks/useFetchData'
