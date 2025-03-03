@@ -38,12 +38,12 @@ export default function Cart({ dataInfo }) {
           </div>
         </div>
       </button>
-      <CartPopup isOpen={isOpen} dataInfo={dataInfo} />
+      <CartPopup isOpen={isOpen} dataInfo={dataInfo} toggleOpen={toggleOpen} />
     </div>
   )
 }
 
-function CartPopup({ isOpen, dataInfo }) {
+function CartPopup({ isOpen, dataInfo, toggleOpen }) {
   const data = dataInfo.data
 
   return (
@@ -110,6 +110,7 @@ function CartPopup({ isOpen, dataInfo }) {
             e.stopPropagation()
             if (dataInfo.data) {
               dataInfo.clearAllQuantities()
+              toggleOpen()
             }
           }}
           className="text-md rounded-md bg-brandHighlight px-3 py-1 font-bold text-white transition-opacity hover:opacity-95 active:opacity-80"
@@ -128,4 +129,5 @@ Cart.propTypes = {
 CartPopup.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   dataInfo: PropTypes.object.isRequired,
+  toggleOpen: PropTypes.func.isRequired,
 }
