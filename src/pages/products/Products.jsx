@@ -11,9 +11,8 @@ function CenteredMsg({ text }) {
 }
 
 export default function Products() {
-  const { data, error, loading } = useFetchData(
-    'https://fakestoreapi.com/products',
-  )
+  const { data, error, loading, increaseQuantity, decreaseQuantity } =
+    useFetchData('https://fakestoreapi.com/products')
 
   if (error) {
     return <CenteredMsg text={error.msg} />
@@ -22,16 +21,16 @@ export default function Products() {
   if (loading) {
     return <CenteredMsg text={'loading...'} />
   }
-  console.log(data)
 
   return (
     <main className="grid max-w-screen-lg mx-auto py-10 px-7 gap-y-5 gap-x-20 grid-cols-[repeat(auto-fill,minmax(8.3rem,1fr))]">
       {data.map((item) => (
         <Card
           key={item.id}
-          imageUrl={item.image}
-          title={item.title}
-          price={item.price}
+          item={item}
+          quantity={item.quantity}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
         />
       ))}
     </main>
