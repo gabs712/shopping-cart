@@ -6,7 +6,7 @@ export default function useTogglePopup() {
 
   useEffect(() => {
     window.addEventListener('click', (e) => {
-      if (!cartRef.current.contains(e.target)) {
+      if (!cartRef.current?.contains(e.target)) {
         setIsOpen(false)
       }
     })

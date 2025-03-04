@@ -4,10 +4,20 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import Header from './Header'
 
+const dataInfo = [
+  {
+    id: 1,
+    image: '',
+    title: 'title',
+    price: 12,
+    quantity: 0,
+  },
+]
+
 describe('Header', () => {
   let user
   beforeEach(() => {
-    render(<Header />, { wrapper: MemoryRouter })
+    render(<Header dataInfo={dataInfo} />, { wrapper: MemoryRouter })
     user = userEvent.setup()
   })
 
